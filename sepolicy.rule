@@ -1,0 +1,295 @@
+create vendor_file app_data_file vendor_config_file vendor_data_file dts_data_file dtsconfigurator_exec dtsconfigurator dtsconfigurator_tmpfs dtseagleservice_exec dtseagleservice dtseagleservice_tmpfs dtseagleservice_service self oem_prop oem_device hal_allocator_client hal_audio_client hal_bluetooth hal_bluetooth_client opdiagnose_service 
+allow init vendor_file file { relabelfrom }
+allow priv_app vendor_displayfeature_prop file { read open getattr map }
+allow hal_memtrack_default sysfs_kgsl dir { search }  
+allow hal_audio_default system_file file { read open getattr map execute ioctl lock } 
+allow hal_audio_default sysfs_net dir { read }
+allow hal_audio_default unlabeled dir { search write add_name create read open ioctl getattr }
+allow hal_audio_default unlabeled file { search write add_name create read open ioctl getattr }
+allow hal_audio_default vendor_data_file file { read write open getattr ioctl } 
+allow hal_audio_default vendor_data_file dir { read write open getattr ioctl }
+allow hal_audio_default app_data_file file { ioctl process read write open execmem getattr }
+allow hal_audio_default vendor_configs_file file { ioctl process read write open execmem getattr lock }
+allow priv_app vendor_data_file file { ioctl process read write open execmem getattr } 
+allow priv_app vendor_config_file file { ioctl process read write open execmem getattr }
+allow priv_app vendor_configs_file file { ioctl process read write open execmem getattr lock } 
+allow priv_app dts_data_file dir { ioctl process read write open execmem getattr } 
+allow priv_app dts_data_file file { rioctl process read write open execmem getattr } 
+allow audioserver vendor_data_file dir { ioctl read write getattr lock add_name remove_name search open } 
+allow audioserver vendor_data_file file { ioctl read write create getattr setattr lock append unlink rename open } 
+allow audioserver vendor_data_file file { read getattr open } 
+allow audioserver vendor_data_file dir { write add_name } 
+allow audioserver vendor_data_file file { write create setattr open } 
+allow priv_app asec_apk_file file { ioctl read getattr lock open } 
+allow priv_app asec_apk_file dir { ioctl read getattr lock search open } 
+allow priv_app shell_data_file file { ioctl read getattr lock open } 
+allow priv_app shell_data_file dir { ioctl read getattr lock search open } 
+allow priv_app app_data_file file { read write getattr } 
+allow priv_app media_rw_data_file dir { ioctl read write create getattr setattr lock rename add_name remove_name reparent search rmdir open } 
+allow priv_app media_rw_data_file file { ioctl read write create getattr setattr lock append unlink rename open } 
+allow priv_app mnt_media_rw_file dir search 
+allow priv_app servicemanager service_manager list 
+allow priv_app audioserver_service service_manager find 
+allow priv_app cameraserver_service service_manager find 
+allow priv_app drmserver_service service_manager find 
+allow priv_app mediaserver_service service_manager find 
+allow priv_app mediaextractor_service service_manager find 
+allow priv_app mediacodec_service service_manager find 
+allow priv_app mediametrics_service service_manager find 
+allow priv_app mediadrmserver_service service_manager find 
+allow priv_app mediaserver_service service_manager find 
+allow priv_app nfc_service service_manager find 
+allow priv_app radio_service service_manager find 
+allow priv_app surfaceflinger_service service_manager find 
+allow priv_app app_api_service service_manager find 
+allow priv_app vr_manager_service service_manager find 
+allow priv_app priv_app process ptrace 
+allow priv_app sysfs_hwrandom dir search 
+allow priv_app sysfs_hwrandom file { ioctl read getattr lock open } 
+allow priv_app preloads_media_file dir { ioctl read getattr lock search open } 
+allow priv_app preloads_media_file file { ioctl read getattr lock open } 
+allow priv_app preloads_data_file dir search 
+allow priv_app vendor_app_file dir { read getattr search open } 
+allow priv_app vendor_app_file file { read getattr execute open } 
+allow priv_app vendor_app_file lnk_file { read getattr open } 
+allow priv_app vendor_data_file dir { ioctl read getattr lock search open } 
+allow priv_app vendor_data_file file { ioctl read getattr lock open write } 
+allow priv_app priv_app udp_socket { create connect } 
+allow priv_app priv_app tcp_socket { read write create getattr connect getopt setopt } 
+allow priv_app port tcp_socket name_connect 
+allow priv_app netd unix_stream_socket connectto 
+allow priv_app fwmarkd_socket sock_file write 
+allow priv_app dnsproxyd_socket sock_file write 
+allow priv_app vendor_data_file dir search 
+allow priv_app vendor_data_file file read 
+allow priv_app system_data_file file ( read write getattr open ) 
+allow mediacodec vendor_data_file dir { ioctl read write getattr lock add_name remove_name search open } 
+allow mediacodec vendor_data_file file { ioctl read write create getattr setattr lock append unlink rename open } 
+allow netd priv_app fd use 
+allow netd priv_app tcp_socket { read write getopt setopt } 
+allow init dtsconfigurator_exec file { read getattr execute open } 
+allow init dtsconfigurator process transition 
+allow dtsconfigurator dtsconfigurator_exec file { read getattr execute entrypoint open } 
+allow init dtsconfigurator process { siginh rlimitinh } 
+allow dtsconfigurator dtsconfigurator_tmpfs file { read write getattr } 
+allow dtsconfigurator tmpfs dir { getattr search } 
+allow dtsconfigurator audio_device dir { ioctl read getattr lock search open } 
+allow dtsconfigurator audio_device chr_file { ioctl read write getattr lock append open } 
+allow init dtseagleservice_exec file { read getattr execute open } 
+allow init dtseagleservice process transition 
+allow dtseagleservice dtseagleservice_exec file { read getattr execute entrypoint open } 
+allow init dtseagleservice process { siginh rlimitinh } 
+allow dtseagleservice dtseagleservice_tmpfs file { read write getattr } 
+allow dtseagleservice tmpfs dir { getattr search } 
+allow dtseagleservice priv_app binder { call transfer } 
+allow priv_app dtseagleservice binder transfer 
+allow dtseagleservice priv_app fd use 
+allow dtseagleservice priv_app binder { call transfer } 
+allow priv_app dtseagleservice binder transfer 
+allow dtseagleservice priv_app fd use 
+allow dtseagleservice dtseagleservice_service service_manager add 
+allow dtseagleservice audio_device dir { ioctl read getattr lock search open } 
+allow dtseagleservice audio_device chr_file { ioctl read write getattr lock append open } 
+allow dtsconfigurator audio_device chr_file { append getattr ioctl lock map open read write }
+allow dtsconfigurator audio_device dir { getattr ioctl lock open read search }
+allow dtsconfigurator dtsconfigurator dir { getattr ioctl lock open read search }
+allow dtsconfigurator dtsconfigurator fd use
+allow dtsconfigurator dtsconfigurator fifo_file { append getattr ioctl lock map open read write }
+allow dtsconfigurator dtsconfigurator file { append getattr ioctl lock map open read write }
+allow dtsconfigurator dtsconfigurator lnk_file { getattr ioctl lock map open read }
+allow dtsconfigurator dtsconfigurator process { fork getattr getcap getpgid getsched getsession setcap setpgid setrlimit setsched sigchld sigkill signal signull sigstop }
+allow dtsconfigurator dtsconfigurator unix_dgram_socket { append bind connect create getattr getopt ioctl lock read sendto setattr setopt shutdown write }
+allow dtsconfigurator dtsconfigurator unix_stream_socket { accept append bind connect connectto create getattr getopt ioctl listen lock read setattr setopt shutdown write }
+allow dtsconfigurator dtsconfigurator_exec file { entrypoint execute getattr map open read }
+allow dtsconfigurator dtsconfigurator_tmpfs file { getattr map read write }
+allow dtsconfigurator hwbinder_device chr_file { append getattr ioctl lock map open read write }
+allow dtsconfigurator mnt_vendor_file lnk_file { getattr ioctl lock map open read }
+allow dtsconfigurator netutils_wrapper process { rlimitinh siginh transition }
+allow dtsconfigurator netutils_wrapper_exec file { execute getattr map open read }
+allow dtsconfigurator sysfs_esoc dir { getattr ioctl lock open read search }
+allow dtsconfigurator sysfs_esoc file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_esoc lnk_file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_socinfo dir { getattr ioctl lock open read search }
+allow dtsconfigurator sysfs_socinfo file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_socinfo lnk_file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_ssr dir { getattr ioctl lock open read search }
+allow dtsconfigurator sysfs_ssr file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_ssr lnk_file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_thermal dir { getattr ioctl lock open read search }
+allow dtsconfigurator sysfs_thermal file { getattr ioctl lock map open read }
+allow dtsconfigurator sysfs_thermal lnk_file { getattr ioctl lock map open read }
+allow dtsconfigurator tmpfs dir { getattr search }
+allow dtsconfigurator vendor_file_type dir { getattr ioctl lock open read search }
+allow dtsconfigurator vendor_file_type file { execute getattr map open read }
+allow dtsconfigurator vendor_file_type lnk_file { getattr read }
+allow dtseagleservice audio_device chr_file { append getattr ioctl lock map open read write }
+allow dtseagleservice audio_device dir { getattr ioctl lock open read search }
+allow dtseagleservice dtseagleservice dir { getattr ioctl lock open read search }
+allow dtseagleservice dtseagleservice fd use
+allow dtseagleservice dtseagleservice fifo_file { append getattr ioctl lock map open read write }
+allow dtseagleservice dtseagleservice file { append getattr ioctl lock map open read write }
+allow dtseagleservice dtseagleservice lnk_file { getattr ioctl lock map open read }
+allow dtseagleservice dtseagleservice process { fork getattr getcap getpgid getsched getsession setcap setpgid setrlimit setsched sigchld sigkill signal signull sigstop }
+allow dtseagleservice dtseagleservice unix_dgram_socket { append bind connect create getattr getopt ioctl lock read sendto setattr setopt shutdown write }
+allow dtseagleservice dtseagleservice unix_stream_socket { accept append bind connect connectto create getattr getopt ioctl listen lock read setattr setopt shutdown write }
+allow dtseagleservice dtseagleservice_exec file { entrypoint execute getattr map open read }
+allow dtseagleservice dtseagleservice_service service_manager add
+allow dtseagleservice dtseagleservice_tmpfs file { getattr map read write }
+allow dtseagleservice hwbinder_device chr_file { append getattr ioctl lock map open read write }
+allow dtseagleservice mnt_vendor_file lnk_file { getattr ioctl lock map open read }
+allow dtseagleservice netutils_wrapper process { rlimitinh siginh transition }
+allow dtseagleservice netutils_wrapper_exec file { execute getattr map open read }
+allow dtseagleservice platform_app binder { call transfer }
+allow dtseagleservice platform_app fd use
+allow dtseagleservice sysfs_esoc dir { getattr ioctl lock open read search }
+allow dtseagleservice sysfs_esoc file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_esoc lnk_file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_socinfo dir { getattr ioctl lock open read search }
+allow dtseagleservice sysfs_socinfo file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_socinfo lnk_file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_ssr dir { getattr ioctl lock open read search }
+allow dtseagleservice sysfs_ssr file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_ssr lnk_file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_thermal dir { getattr ioctl lock open read search }
+allow dtseagleservice sysfs_thermal file { getattr ioctl lock map open read }
+allow dtseagleservice sysfs_thermal lnk_file { getattr ioctl lock map open read }
+allow dtseagleservice system_app binder { call transfer }
+allow dtseagleservice system_app fd use
+allow dtseagleservice tmpfs dir { getattr search }
+allow dtseagleservice vendor_file_type dir { getattr ioctl lock open read search }
+allow dtseagleservice vendor_file_type file { execute getattr map open read }
+allow dtseagleservice vendor_file_type lnk_file { getattr read }
+allow mediaserver vendor_data_file dir { ioctl read write getattr lock add_name remove_name search open } 
+allow mediaserver vendor_data_file file { ioctl read write create getattr setattr lock append unlink rename open } 
+allow priv_app dtseagleservice binder { call transfer } 
+allow dtseagleservice priv_app binder transfer 
+allow priv_app dtseagleservice fd use 
+allow priv_app vendor_data_file dir { ioctl read getattr lock search open } 
+allow  priv_app vendor_data_file file { ioctl read getattr lock open } 
+allow priv_app vendor_data_file lnk_file { ioctl read getattr lock open } 
+allow priv_app dtseagleservice binder { call transfer } 
+allow dtseagleservice priv_app binder transfer 
+allow priv_app dtseagleservice fd use 
+allow priv_app default_android_service service_manager find 
+allow priv_app hal_memtrack_hwservice hwservice_manager find 
+allow hal_audio_default diag_device chr_file { read write } 
+allow audioserver serialno_prop file { read open getattr } 
+allow audioserver oem_prop file { read open getattr } 
+allow init oem_device chr_file { read open } 
+allow qti_init_shell default_prop property_service set 
+allow priv_app ffs_prop property_service set 
+allow priv_app device dir { read open } 
+allow mediaextractor oem_prop file { read open getattr } 
+allow priv_app property_socket sock_file write 
+allow priv_app init unix_stream_socket connectto 
+allow hal_perf_default sysfs file write 
+allow init pdx_bufferhub_client_endpoint_socket_type unix_stream_socket { create bind } 
+allow bufferhubd pdx_bufferhub_client_endpoint_socket_type unix_stream_socket { read write getattr setattr lock append listen accept getopt setopt shutdown } 
+allow bufferhubd self process setsockcreate 
+allow bufferhubd pdx_bufferhub_client_channel_socket_type unix_stream_socket { ioctl read write create getattr setattr lock append bind connect listen accept getopt setopt shutdown } 
+allow bufferhubd pdx_performance_client_endpoint_dir_type dir { ioctl read getattr lock search open } 
+allow bufferhubd pdx_performance_client_endpoint_socket_type sock_file { ioctl read write getattr lock append open } 
+allow bufferhubd pdx_performance_client_endpoint_socket_type unix_stream_socket { read write shutdown connectto } 
+allow bufferhubd pdx_performance_client_channel_socket_type unix_stream_socket { read write getattr setattr lock append getopt setopt shutdown } 
+allow bufferhubd pdx_performance_client_server_type fd use 
+allow pdx_performance_client_server_type bufferhubd fd use 
+allow bufferhubd gpu_device chr_file { ioctl read write getattr lock append open } 
+allow bufferhubd ion_device chr_file { ioctl read getattr lock open } 
+allow bufferhubd mediacodec  fd use 
+allow hal_allocator_client hal_allocator_server binder { call transfer} 
+allow hal_allocator_server hal_allocator_client binder transfer 
+allow hal_allocator_client hal_allocator_server fd use allow hal_allocator_server hidl_allocator_hwservice hwservice_manager { add find } 
+allow hal_allocator_server hidl_base_hwservice hwservice_manager add 
+allow hal_allocator_client hidl_allocator_hwservice hwservice_manager find 
+allow hal_allocator_client hidl_memory_hwservice hwservice_manager find 
+allow hal_audio_client hal_audio_server binder { call transfer } 
+allow hal_audio_server hal_audio_client binder transfer allow hal_audio_client hal_audio_server fd use 
+allow hal_audio_server hal_audio_client binder { call transfer } 
+allow hal_audio_client hal_audio_server binder transfer allow hal_audio_server hal_audio_client fd use 
+allow hal_audio_server hal_audio_hwservice hwservice_manager { add find } 
+allow hal_audio_server hidl_base_hwservice hwservice_manager add 
+allow hal_audio_client hal_audio_hwservice hwservice_manager find 
+allow hal_audio ion_device chr_file { ioctl read getattr lock open } 
+allow hal_audio proc dir { ioctl read getattr lock search open } 
+allow hal_audio proc file { ioctl read getattr lock open } 
+allow hal_audio proc lnk_file { ioctl read getattr lock open } 
+allow hal_audio audio_device dir { ioctl read getattr lock search open } 
+allow hal_audio audio_device chr_file { ioctl read write getattr lock append open } 
+allow hal_audio shell fd use 
+allow hal_audio shell fifo_file write allow hal_audio dumpstate fd use 
+allow hal_audio dumpstate fifo_file write 
+allow hal_bluetooth_client hal_bluetooth_server binder { call transfer } 
+allow hal_bluetooth_server hal_bluetooth_client binder transfer 
+allow hal_bluetooth_client hal_bluetooth_server fd use 
+allow hal_bluetooth_server hal_bluetooth_client binder { call transfer } 
+allow hal_bluetooth_client hal_bluetooth_server binder transfer 
+allow hal_bluetooth_server hal_bluetooth_client fd use 
+allow hal_bluetooth_server hal_bluetooth_hwservice hwservice_manager { add find } 
+allow hal_bluetooth_server hidl_base_hwservice hwservice_manager add 
+allow hal_bluetooth_client hal_bluetooth_hwservice hwservice_manager find 
+allow hal_bluetooth sysfs_wake_lock file { ioctl read write getattr lock append open } 
+allow hal_bluetooth self capability2 block_suspend 
+allow hal_bluetooth self capability net_admin 
+allow hal_bluetooth bluetooth_efs_file dir { ioctl read getattr lock search open } 
+allow hal_bluetooth bluetooth_efs_file file { ioctl read getattr lock open } 
+allow hal_bluetooth bluetooth_efs_file lnk_file { ioctl read getattr lock open } 
+allow hal_bluetooth uhid_device chr_file { ioctl read write getattr lock append open } 
+allow hal_bluetooth hci_attach_dev chr_file { ioctl read write getattr lock append open } 
+allow hal_bluetooth sysfs_type dir { ioctl read getattr lock search open } 
+allow hal_bluetooth sysfs_type file { ioctl read getattr lock open } 
+allow hal_bluetooth sysfs_type lnk_file { ioctl read getattr lock open } 
+allow hal_bluetooth sysfs_bluetooth_writable file { ioctl read write getattr lock append open } 
+allow hal_bluetooth self capability2 wake_alarm 
+allow hal_bluetooth property_socket sock_file write 
+allow hal_bluetooth init unix_stream_socket connectto 
+allow hal_bluetooth bluetooth_prop property_service set 
+allow hal_bluetooth bluetooth_prop file { ioctl read getattr lock open } 
+allow hal_bluetooth proc_bluetooth_writable file { ioctl read write getattr lock append open } 
+allow hal_bluetooth self capability sys_nice 
+allow priv_app vendor_data_file dir { search read write } 
+allow priv_app su binder call 
+allow audioserver su binder call 
+allow hal_audio_default vendor_data_file dir search 
+allow priv_app vendor_data_file file { read write open getattr create } 
+allow hal_audio_default vendor_data_file dir write 
+allow system_server audioserver file write 
+allow system_server qti_debugfs dir search 
+allow hal_audio_default vendor_data_file dir add_name 
+allow priv_app system_prop property_service set 
+allow hal_audio_default vendor_data_file file { create read write open unlink setattr } 
+allow hal_drm_default oem_prop file getattr 
+allow hal_perf_default kernel dir search 
+allow priv_app opdiagnose_service service_manager find 
+allow priv_app proc_modules file { read } 
+allow priv_app proc_interrupts file { read } 
+allow audioserver device chr_file * 
+allow priv_app unlabeled file * 
+allow hal_iop_default priv_app dir * 
+allow hal_iop_default priv_app dir * 
+allow priv_app proc_modules file * 
+allow priv_app proc_interrupts file * 
+allow mediacodec oem_prop file * 
+allow hal_iop_default priv_app lnk_file * 
+allow hal_iop_default priv_app lnk_file getattr 
+allow { audioserver mediaserver } vendor_data_file dir { read execute open search getattr associate } 
+allow hal_audio_default sysfs_net dir { read } 
+allow hal_audio_default vendor_data_file file { read write open getattr } 
+allow hal_audio_default vendor_configs_file file { ioctl process read write open execmem getattr } 
+allow hal_audio_default vendor_data_file file { open read write } 
+allow audioserver logd_socket sock_file { write } 
+allow priv_app vendor_file file { getattr }
+allow priv_app property_socket sock_file { search open read write }
+allow audioserver logd unix_stream_socket { connectto }
+allow mediaprovider radio_service service_manager { find }
+allow priv_app bg_boot_complete_prop file { read write }
+allow priv_app bg_daemon_prop file { read write }
+allow priv_app bluetooth_prop file { read write }
+allow priv_app bootloader_boot_reason_prop file { read }
+allow priv_app proc_modules file { read write }
+allow priv_app mqs_service service_manager { find }
+allow priv_app bluetooth_prop file { search read }
+allow hal_audio_default vendor_data_file file { search open read write }
+allow priv_app property_socket { search open read write }
+allow hal_audio_default vendor_file file { search open read write }
+allow priv_app property_socket sock_file { write }
+allow hal_audio_default unlabeled file { read }

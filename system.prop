@@ -1,0 +1,13 @@
+ro.dts.licensepath=/system/vendor/etc/dts/
+ro.vendor.dts.licensepath=/system/vendor/etc/dts/
+ro.dts.cfgpath=/system/vendor/etc/dts/
+ro.vendor.dts.cfgpath=/system/vendor/etc/dts/
+ro.product.model=ZTE A2020G Pro
+ro.product.vendor.model=ZTE A2020G Pro
+ro.build.product=P855A01
+persist.sys.dts.settings=1
+vendor.dts.audio.set_bypass=false
+ro.feature.zte_dts_tuning_path=P855A02_P
+#UltraM8's hex props
+vendor.dts.audio.allow_offload=1
+
